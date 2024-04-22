@@ -1,0 +1,29 @@
+                    <!-- @if (!empty($message))
+                    <div class="alert alert-warning">{{ $message }}</div>
+                    @endif -->
+
+                    <!-- Display employee records if available -->
+                    <!-- @forelse ($employees as $employee) -->
+                    <!-- Employee data rendering code -->
+                        <!-- {{ dd($employee) }}
+                    @empty -->
+                    <!-- This block will be rendered if the $employees collection is empty -->
+                    <!-- <div class="alert alert-info">No employees found.</div>
+                    @endforelse -->
+
+
+
+                    $employees = Employee::all();
+
+                    if ($employees->isEmpty()) {
+                        // If the collection is empty
+                        $message = 'There is No data can be displayed.';
+                    } else {
+                        // If the collection contains records
+                        $message = '';
+                    }
+            
+                    return view('components.index', [
+                        'employees' => $employees,
+                        'message' => $message
+                    ]);
